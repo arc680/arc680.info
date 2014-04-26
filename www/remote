@@ -1,0 +1,10 @@
+#!/usr/bin/ruby
+require 'cgi'
+
+print "Content-Type: text/plain\n\n"
+c = CGI.new
+
+puts 'test' * 3
+
+puts c.remote_addr
+puts c.remote_host
