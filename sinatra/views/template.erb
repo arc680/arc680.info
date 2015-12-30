@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+<nav>
+<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+<% if @path == 'index' %>
+    <a class="pure-menu-heading" href="./">　</a>
+<% else %>
+    <a class="pure-menu-heading" href="./">arc680.info</a>
+<% end %>
+    <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+            <a href="#" class="pure-menu-link">Home</a>
+        </li>
+        <li class="pure-menu-item pure-menu-selected">
+            <a href="#" class="pure-menu-link">Profile</a>
+        </li>
+        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link">Contact</a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Twitter</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Blog</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">GitHub</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</nav>
+</header>
+
+<article>
+<div class="twitter-profile-container">
+    <div class="twitter-profile">
+<% if @path == 'index' %>
+        <div class="twitter-name"><h1>arc680.info</h1></div>
+<% elsif @path == 'profile' %>
+        <div class="twitter-icon"><!--<img class="pure-img" src="<%= p @profile['profile_image_uri'] %>">--></div>
+        <div class="twitter-name"><%= @profile['name'] %>（@<span class="twitter-screen-name"><%= @profile['screen_name'] %>）</span></div>
+        <div class="twitter-location"><%= @profile['location'] %></div>
+        <div class="twitter-description"><%= @profile['description'].gsub(/\n/, "<br />") %></div>
+<% end %>
+    </div>
+</div>
+
+<div class="profile-container">
+    <div class="pure-g">
+<% if @path == 'index' %>
+        <div class="pure-u-1 pure-u-sm-1-3">
+            <h2>Profile</h2>
+            <a class="pure-button pure-button-primary" href="./profile">>> more</a>
+        </div>
+        <div class="pure-u-1 pure-u-sm-1-3">
+            <h2>Works</h2>
+            <a class="pure-button pure-button-primary" href="./works">>> more</a>
+        </div>
+        <div class="pure-u-1 pure-u-sm-1-3">
+            <h2>Other</h2>
+        </div>
+<% elsif @path == 'profile' %>
+        <div class="pure-u-1 pure-u-sm-1-3"><h2>Thirds</h2></div>
+        <div class="pure-u-1 pure-u-sm-1-3"><h2><%= @path %></h2></div>
+        <div class="pure-u-1 pure-u-sm-1-3"><h2>Thirds</h2></div>
+<% end %>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+</article>
+
+<footer />
+
+</body>
+</html>
