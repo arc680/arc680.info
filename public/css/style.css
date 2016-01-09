@@ -15,6 +15,7 @@ article {
 	color: #fff;
 	font-weight: 400;
 	font-size: 120%;
+	text-transform: none;
 }
 
 .home-menu .pure-menu-fixed {
@@ -77,5 +78,5 @@ article {
 	top: 55%;
 	left: 0;
 	position: fixed;
-    padding: 0 0 0 1em;
+  padding: 0 0 0 1em;
 }
