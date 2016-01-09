@@ -5,8 +5,6 @@ require 'sinatra/reloader'
 require 'twitter'
 require 'json'
 
-
-
 get '/' do
     @path = 'index'
     @profile = get_profile_from_twitter
@@ -41,16 +39,32 @@ def get_profile_from_twitter
         JSON.load(io)
     end
         #return "aaaa"
-    #p json_data
-    return json_data['data']
-    client = Twitter::REST::Client.new do |config|
-    #client = Twitter.configure do |config|
-        config.consumer_key        = 'wyUYo7b7RTYHfXVuhYdp2g'
-        config.consumer_secret     = 'B9VbOklYHPefjmIowTatD5OWuOpeaB9nJpQzmmT6Y'
-        config.access_token        = '83277856-jup3PeQqOuZWhTEm5b3JZSYEqpgtFJgBWruSrTdPr'
-        config.access_token_secret = '75pvjYAAfphuqkwQyzUWguPkVckkL3cniwSsw914'
+    p json_data
+
+    new_timestamp = Time.now.to_i
+    if new_timestamp > json_data['timestamp'].to_i + 86400
+      p "abababababa"
+
+      client = Twitter::REST::Client.new do |config|
+      #client = Twitter.configure do |config|
+          config.consumer_key        = 'wyUYo7b7RTYHfXVuhYdp2g'
+          config.consumer_secret     = 'B9VbOklYHPefjmIowTatD5OWuOpeaB9nJpQzmmT6Y'
+          config.access_token        = '83277856-jup3PeQqOuZWhTEm5b3JZSYEqpgtFJgBWruSrTdPr'
+          config.access_token_secret = '75pvjYAAfphuqkwQyzUWguPkVckkL3cniwSsw914'
+      end
+      #p client.user.profile_image_uri(:bigger)
+      profile = client.user
+
+      json_data['timestamp'] = new_timestamp
+      json_data['data']['name'] = profile.name
+      json_data['data']['screen_name'] = profile.screen_name
+      json_data['data']['location'] = profile.location
+      json_data['data']['description'] = profile.description
+
+      open(json_file_path, 'w') do |io|
+        JSON.dump(json_data, io)
+      end
     end
-    #user = Twitter::REST::Users
-    return client.user
-    #p Twitter::Profile.new.profile_image_url_https
+
+    return json_data['data']
 end

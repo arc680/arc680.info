@@ -47,7 +47,7 @@
 <% if @path == 'index' %>
         <div class="twitter-name"><h1>arc680.info</h1></div>
 <% elsif @path == 'profile' %>
-        <div class="twitter-icon"><!--<img class="pure-img" src="<%= p @profile['profile_image_uri'] %>">--></div>
+        <div class="twitter-icon"><img class="pure-img" src="<%= p @profile['profile_image_uri'] %>"></div>
         <div class="twitter-name"><%= @profile['name'] %>（@<span class="twitter-screen-name"><%= @profile['screen_name'] %>）</span></div>
         <div class="twitter-location"><%= @profile['location'] %></div>
         <div class="twitter-description"><%= @profile['description'].gsub(/\n/, "<br />") %></div>
