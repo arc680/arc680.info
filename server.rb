@@ -23,48 +23,40 @@ end
 
 get '/:path' do |path|
     @path = path
-    @profile = get_profile_from_twitter
-    #p @profile['name']
-    "this is #{path}"
+    json_data = get_json('https://twibio.herokuapp.com/')
+    @profile = json_data['data']
+
     erb :template
 end
 
-def get_profile_from_twitter
-    Encoding.default_external = "UTF-8"
+# from http://qiita.com/awakia/items/bd8c1385115df27c15fa
+require 'net/http'
+require 'uri'
+require 'json'
 
-    # 1時間に1回とかにして、キャッシュさせるようにした方がいいなこれ…
-    json_file_path = './profile.json'
-
-    json_data = open(json_file_path) do |io|
-        JSON.load(io)
+def get_json(location, limit = 10)
+  raise ArgumentError, 'too many HTTP redirects' if limit == 0
+  uri = URI.parse(location)
+  begin
+    response = Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+      http.open_timeout = 5
+      http.read_timeout = 10
+      http.get(uri.request_uri)
     end
-        #return "aaaa"
-    p json_data
-
-    new_timestamp = Time.now.to_i
-    if new_timestamp > json_data['timestamp'].to_i + 86400
-      p "abababababa"
-
-      client = Twitter::REST::Client.new do |config|
-      #client = Twitter.configure do |config|
-          config.consumer_key        = 'wyUYo7b7RTYHfXVuhYdp2g'
-          config.consumer_secret     = 'B9VbOklYHPefjmIowTatD5OWuOpeaB9nJpQzmmT6Y'
-          config.access_token        = '83277856-jup3PeQqOuZWhTEm5b3JZSYEqpgtFJgBWruSrTdPr'
-          config.access_token_secret = '75pvjYAAfphuqkwQyzUWguPkVckkL3cniwSsw914'
-      end
-      #p client.user.profile_image_uri(:bigger)
-      profile = client.user
-
-      json_data['timestamp'] = new_timestamp
-      json_data['data']['name'] = profile.name
-      json_data['data']['screen_name'] = profile.screen_name
-      json_data['data']['location'] = profile.location
-      json_data['data']['description'] = profile.description
-
-      open(json_file_path, 'w') do |io|
-        JSON.dump(json_data, io)
-      end
+    case response
+    when Net::HTTPSuccess
+      json = response.body
+      JSON.parse(json)
+    when Net::HTTPRedirection
+      location = response['location']
+      warn "redirected to #{location}"
+      get_json(location, limit - 1)
+    else
+      puts [uri.to_s, response.value].join(" : ")
+      # handle error
     end
-
-    return json_data['data']
+  rescue => e
+    puts [uri.to_s, e.class, e].join(" : ")
+    # handle error
+  end
 end
