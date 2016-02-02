@@ -7,19 +7,11 @@ require 'json'
 
 get '/' do
     @path = 'index'
-    @profile = get_profile_from_twitter
-    #"this is #{path}"
-    erb :template
-#    erb :index
-end
+    json_data = get_json('https://twibio.herokuapp.com/')
+    @profile = json_data['data']
 
-#get '/profile' do
-#    @profile = get_profile_from_twitter
-#    erb :header, :layout => :profile
-#    #erb :header, :layout => false do
-#    #    erb :profile
-#    #end
-#end
+    erb :template
+end
 
 get '/:path' do |path|
     @path = path
