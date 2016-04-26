@@ -21,92 +21,80 @@
 <body>
 
 <header>
-<nav>
-<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-<% if @path != 'aaaaaa' %>
-    <a class="pure-menu-heading" href="./">　</a>
-<% else %>
-    <a class="pure-menu-heading" href="./">arc680.info</a>
-<% end %>
-    <ul class="pure-menu-list">
-<% if @path == 'index' %>
-        <li class="pure-menu-item pure-menu-selected">
-          <a href="" class="pure-menu-link">Home</a>
-<% else %>
-        <li class="pure-menu-item">
-          <a href="../" class="pure-menu-link">Home</a>
-<% end %>
-        </li>
-<% if @path == 'works' %>
-        <li class="pure-menu-item pure-menu-selected">
-            <a href="" class="pure-menu-link">Works</a>
-<% else %>
-        <li class="pure-menu-item">
-            <a href="./works" class="pure-menu-link">Works</a>
-<% end %>
-        </li>
-        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-            <a href="" id="menuLink1" class="pure-menu-link">Contact</a>
-            <ul class="pure-menu-children">
-                <li class="pure-menu-item"><a href="https://twitter.com/arc680" class="pure-menu-link">Twitter</a></li>
-                <li class="pure-menu-item"><a href="http://arc680.hatenablog.jp/" class="pure-menu-link">Blog</a></li>
-                <li class="pure-menu-item"><a href="https://github.com/arc680/" class="pure-menu-link">GitHub</a></li>
-                <li class="pure-menu-item"><a href="https://bitbucket.org/arc680/" class="pure-menu-link">BitBucket</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
-</nav>
+    <div class="twitter-icon"><img class="pure-img" src="<%= p @profile['profile_image_uri'] %>"></div>
+    <div class="site-title"><h1>arc680.info</h1></div>
 </header>
 
 <article>
-<div class="first-container">
-    <div class="head-part">
-        <div class="twitter-icon"><img class="pure-img" src="<%= p @profile['profile_image_uri'] %>"></div>
-        <div class="site-title"><h1>arc680.info</h1></div>
+    <div class="accordion">
+        <div id="profile-menu" class="pure-g">
+            <div class="menu-tab menu-tab-profile pure-u-1-2">
+                <div class="menu-tab-border">
+                    <div class="menu-label">
+                        <i class="fa fa-cog"></i> Profile
+                    </div>
+                </div>
+            </div>
+            <div class="menu-tab menu-tab-accounts pure-u-1-2">
+                <div class="menu-tab-border">
+                    <div class="menu-label">
+                        <i class="fa fa-cog"></i> Account
+                    </div>
+                </div>
+            </div>
+            <div class="menu-tab menu-tab-works pure-u-1-2">
+                <div class="menu-tab-border">
+                    <div class="menu-label">
+                        <i class="fa fa-cog"></i> Skill
+                    </div>
+                </div>
+            </div>
+            <div class="menu-tab menu-tab-other pure-u-1-2">
+                <div class="menu-tab-border">
+                    <div class="menu-label">
+                        <i class="fa fa-cog"></i> Work
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-contents pure-g">
+            <div class="content-wrap pure-u-1 pure-u-sm-1-3">
+                <h2 ><i class="fa fa-cog"></i> Profile</h2>
+                <div class="">
+                    <div class="twitter-name"><%= @profile['name'] %>（@<span class="twitter-screen-name"><%= @profile['screen_name'] %>）</span></div>
+                    <div class="twitter-description"><%= @profile['description'].gsub(/\n/, "<br />") %></div>
+                </div>
+            </div>
+            <div class="content-wrap hidden pure-u-1 pure-u-sm-1-3">
+                <h2><i class="fa fa-cog"></i> Account</h2>
+                <div class="">
+                    <ul class="">
+                        <li class=""><i class="fa fa-twitter"></i> Twitter - <a href="https://twitter.com/arc680" class="pure-link">arc680</a></li>
+                        <li class=""><i class="fa fa-linux"></i> Blog - <a href="http://arc680.hatenablog.jp/" class="pure-link">あーく・りなっくす</a></li>
+                        <li class=""><i class="fa fa-instagram"></i> instagram - <a href="http://arc680.hatenablog.jp/" class="pure-link">arc680</a></li>
+                        <li class=""><i class="fa fa-github"></i> Github - <a href="https://github.com/arc680/" class="pure-link">arc680</a></li>
+                        <li class=""><i class="fa fa-bitbucket"></i> BitBucket - <a href="https://bitbucket.org/arc680/" class="pure-link">arc680</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-wrap hidden pure-u-1 pure-u-sm-1-3">
+                <h2><i class="fa fa-cog"></i> Skill</h2>
+                <div class="">
+                    <dl>
+                        <dt>りんご</dt>
+                            <dd>赤い色をした丸い果物。</dd>
+                        <dt>バナナ</dt>
+                            <dd>黄色い色をした細長い果物。</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="content-wrap hidden pure-u-1 pure-u-sm-1-3">
+                <h2><i class="fa fa-cog"></i> Work</h2>
+                <div class="">
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-<div class="second-container">
-    <div class="accordion pure-g">
-<% if @path == 'index' %>
-        <div class="pure-u-1 pure-u-sm-1-3">
-            <h2 class="switch"><i class="fa fa-cog"></i> Profile</h2>
-            <div class="content-wrap">
-                <div class="twitter-name"><%= @profile['name'] %>（@<span class="twitter-screen-name"><%= @profile['screen_name'] %>）</span></div>
-                <div class="twitter-description"><%= @profile['description'].gsub(/\n/, "<br />") %></div>
-            </div>
-        </div>
-        <div class="pure-u-1 pure-u-sm-1-3">
-            <h2 class="switch"><i class="fa fa-cog"></i> Account</h2>
-            <div class="content-wrap display-none">
-                <ul class="">
-                    <li class=""><i class="fa fa-twitter"></i> Twitter - <a href="https://twitter.com/arc680" class="pure-link">arc680</a></li>
-                    <li class=""><i class="fa fa-linux"></i> Blog - <a href="http://arc680.hatenablog.jp/" class="pure-link">あーく・りなっくす</a></li>
-                    <li class=""><i class="fa fa-instagram"></i> instagram - <a href="http://arc680.hatenablog.jp/" class="pure-link">arc680</a></li>
-                    <li class=""><i class="fa fa-github"></i> Github - <a href="https://github.com/arc680/" class="pure-link">arc680</a></li>
-                    <li class=""><i class="fa fa-bitbucket"></i> BitBucket - <a href="https://bitbucket.org/arc680/" class="pure-link">arc680</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="pure-u-1 pure-u-sm-1-3">
-            <h2 class="switch"><i class="fa fa-cog"></i> Work</h2>
-            <div class="content-wrap display-none">
-            </div>
-        </div>
-        <div class="pure-u-1 pure-u-sm-1-3">
-            <h2 class="switch"><i class="fa fa-cog"></i> Other</h2>
-            <div class="content-wrap display-none">
-            </div>
-        </div>
-<% elsif @path == 'work' %>
-<% end %>
-    </div>
-</div>
-
-<br />
-<br />
-<br />
 </article>
 
 <footer />

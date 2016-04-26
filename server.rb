@@ -6,19 +6,22 @@ require 'twitter'
 require 'json'
 
 get '/' do
-    @path = 'index'
-    json_data = get_json('https://twibio.herokuapp.com/')
-    @profile = json_data['data']
+  @path = 'index'
+  json_data = get_json('https://twibio.herokuapp.com/')
+  @profile = json_data['data']
 
-    erb :template
+  erb :template
 end
 
 get '/:path' do |path|
-    @path = path
-    json_data = get_json('https://twibio.herokuapp.com/')
-    @profile = json_data['data']
-
+  @path = path
+  json_data = get_json('https://twibio.herokuapp.com/')
+  @profile = json_data['data']
+  if path == 'test'
+    erb :test
+  else
     erb :template
+  end
 end
 
 # from http://qiita.com/awakia/items/bd8c1385115df27c15fa
