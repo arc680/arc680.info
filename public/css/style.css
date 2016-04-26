@@ -37,7 +37,7 @@ article {
 	height: 88%;
 	/*top: 35%;*/
 	left: 0;
-	position: fixed;
+	/*position: fixed;*/
   /*padding: 0 0 0 1em;*/
 }
 
@@ -64,17 +64,50 @@ article {
 }
 
 
-#profile-menu .menu-tab .menu-tab-border {
-	border: 1px solid #1f8dd6;
-	border-collapse: collapse;
-	margin: -1px;
+#profile-menu .menu-button button {
+	padding: 1.5em 0 1.5em 0;
+	/*margin: 0.25em 0 0 0.25em;*/
+	width: 100%;
 }
 
-#profile-menu .menu-tab .menu-label {
-	padding: 0 0.5em 0 0.5em;
-	margin: 1.25em 0 1.25em 0;
+button i.fa {
+	/*font-size: 300%;*/
+}
+
+.button-green,
+.button-maroon,
+.button-orange,
+.button-blue {
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-green {
+    background: rgb(28, 184, 65); /* this is a green */
+}
+
+.button-maroon {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+
+.button-orange {
+    background: rgb(223, 117, 20); /* this is an orange */
+}
+
+.button-blue {
+    background: rgb(66, 184, 221); /* this is a light blue */
+}
+
+.button-label {
+	text-align: left;
 }
 
 .accordion-contents {
 	padding: 0 0 0 1em;
+}
+
+.menu-botton-frame {
+	/*margin: 0 auto;
+  width: 35%;*/
 }

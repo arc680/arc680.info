@@ -27,39 +27,50 @@
 
 <article>
     <div class="accordion">
-        <div id="profile-menu" class="pure-g">
-            <div class="menu-tab menu-tab-profile pure-u-1-2">
-                <div class="menu-tab-border">
-                    <div class="menu-label">
-                        <i class="fa fa-cog"></i> Profile
-                    </div>
-                </div>
-            </div>
-            <div class="menu-tab menu-tab-accounts pure-u-1-2">
-                <div class="menu-tab-border">
-                    <div class="menu-label">
+        <div class="pure-menu pure-menu-horizontal">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected">
+                    <span class="pure-menu-link">
+                        <i class="fa fa-user"></i> Profile
+                    </span>
+                </li>
+                <li class="pure-menu-item">
+                    <span class="pure-menu-link">
                         <i class="fa fa-cog"></i> Account
-                    </div>
-                </div>
-            </div>
-            <div class="menu-tab menu-tab-works pure-u-1-2">
-                <div class="menu-tab-border">
-                    <div class="menu-label">
+                    </span>
+                </li>
+                <li class="pure-menu-item">
+                    <span class="pure-menu-link">
                         <i class="fa fa-cog"></i> Skill
-                    </div>
-                </div>
-            </div>
-            <div class="menu-tab menu-tab-other pure-u-1-2">
-                <div class="menu-tab-border">
-                    <div class="menu-label">
+                    </span>
+                </li>
+                <li class="pure-menu-item">
+                    <span class="pure-menu-link">
                         <i class="fa fa-cog"></i> Work
-                    </div>
-                </div>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <% if false %>
+        <div id="profile-menu" class="pure-g">
+            <div class="menu-button pure-u-1-2">
+                <i class="fa fa-user"></i> Profile
+            </div>
+            <div class="menu-button pure-u-1-2">
+                <i class="fa fa-cog"></i> Account
+            </div>
+            <div class="menu-button pure-u-1-2">
+                <i class="fa fa-cog"></i> Skill
+            </div>
+            <div class="menu-button pure-u-1-2">
+                <i class="fa fa-cog"></i> Work
             </div>
         </div>
+        <% end %>
+        
         <div class="accordion-contents pure-g">
             <div class="content-wrap pure-u-1 pure-u-sm-1-3">
-                <h2 ><i class="fa fa-cog"></i> Profile</h2>
+                <h2 ><i class="fa fa-user"></i> Profile</h2>
                 <div class="">
                     <div class="twitter-name"><%= @profile['name'] %>（@<span class="twitter-screen-name"><%= @profile['screen_name'] %>）</span></div>
                     <div class="twitter-description"><%= @profile['description'].gsub(/\n/, "<br />") %></div>

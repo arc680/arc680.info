@@ -1,9 +1,9 @@
 $(function() {
-    $("#profile-menu .menu-tab").click(function() {
-        var num = $("#profile-menu .menu-tab").index(this);
+    $(".accordion .pure-menu .pure-menu-item").click(function() {
+        var num = $(".accordion .pure-menu .pure-menu-item").index(this);
         $(".accordion-contents .content-wrap").addClass('hidden');
         $(".accordion-contents .content-wrap").eq(num).removeClass('hidden');
-        $("#profile-menu .menu-tab").removeClass('select');
-        $(this).addClass('select')
+        $(".accordion .pure-menu .pure-menu-item").removeClass('pure-menu-selected');
+        $(this).addClass('pure-menu-selected');
     });
 });
