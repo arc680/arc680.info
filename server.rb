@@ -21,7 +21,7 @@ get '/:path' do |path|
   if path == 'test'
     erb :test
   elsif path == 'dev'
-    puts env['REMOTE_POST']
+    erb :dev
   else
     erb :template
   end

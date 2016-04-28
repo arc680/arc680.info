@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>dev mode</title>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/pure-min.css">
+<link rel="stylesheet" href="css/grids-responsive-min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var type = connection.type;
+
+    function updateConnectionStatus() {
+        var targetElement = document.getElementById("connection-status");
+        targetElement.appendChild("Connection type is change from " + type + " to " + connection.type);
+    }
+
+    connection.addEventListener('typechange', updateConnectionStatus);
+</script>
+</head>
+<body>
+
+<header>
+    <div class="site-title"><h1>dev mode</h1></div>
+</header>
+
+<article>
+    <div id='connectoin-status' />
+</article>
+
+<footer />
+
+</body>
+</html>
