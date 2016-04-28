@@ -10,11 +10,7 @@ get '/' do
   json_data = get_json('https://twibio.herokuapp.com/')
   @profile = json_data['data']
 
-  if env['REMOTE_HOST'] == 'dev.arc680.info'
-    puts 'dev mode'
-  else
-    erb :template
-  end
+  erb :template
 end
 
 get '/:path' do |path|
@@ -24,6 +20,8 @@ get '/:path' do |path|
   p env
   if path == 'test'
     erb :test
+  elsif path == 'dev'
+    puts env['REMOTE_POST']
   else
     erb :template
   end
