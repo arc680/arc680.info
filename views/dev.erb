@@ -13,17 +13,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script src="js/main.js"></script>
-<script>
-    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    var type = connection.type;
-
-    function updateConnectionStatus() {
-        var targetElement = document.getElementById("connection-status");
-        targetElement.appendChild("Connection type is change from " + type + " to " + connection.type);
-    }
-
-    connection.addEventListener('typechange', updateConnectionStatus);
-</script>
 </head>
 <body>
 
@@ -32,10 +21,28 @@
 </header>
 
 <article>
-    <div id='connectoin-status' />
+    <div id="connection-status"><div>test</div></div>
 </article>
 
 <footer />
 
 </body>
+
+<script>
+    // 描画が先にされてないと困ってしまうので
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    console.debug(connection);
+    var type = connection && connection.type ? connection.type : 'ないっぽい';
+    console.debug(type);
+    var targetElement = document.getElementById("connection-status");
+    console.debug(targetElement);
+    targetElement.innerHTML = type;
+
+    function updateConnectionStatus() {
+        //var targetElement = document.getElementById("connection-status");
+        //targetElement.appendChild("Connection type is change from " + type + " to " + connection.type);
+    }
+
+    //connection.addEventListener('typechange', updateConnectionStatus);
+</script>
 </html>
