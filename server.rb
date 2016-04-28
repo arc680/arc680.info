@@ -10,7 +10,6 @@ get '/' do
   json_data = get_json('https://twibio.herokuapp.com/')
   @profile = json_data['data']
 
-  puts env['REMOTE_HOST']
   if env['REMOTE_HOST'] == 'dev.arc680.info'
     puts 'dev mode'
   else
